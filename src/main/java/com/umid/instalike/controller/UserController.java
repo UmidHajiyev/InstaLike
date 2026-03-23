@@ -1,6 +1,7 @@
 package com.umid.instalike.controller;
 
 import com.umid.instalike.dto.CreateUserRequest;
+import com.umid.instalike.dto.UpdateUserRequest;
 import com.umid.instalike.dto.UserResponse;
 import com.umid.instalike.service.UserService;
 import jakarta.validation.Valid;
@@ -34,5 +35,18 @@ public class UserController {
     public UserResponse createUser(@Valid @RequestBody CreateUserRequest request)
     {
         return userService.createUser(request);
+    }
+
+    @PutMapping("/{id}")
+    public UserResponse updateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest request)
+    {
+        return userService.updateUser(id,request);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable Long id)
+    {
+        userService.deleteUser(id);
     }
 }
