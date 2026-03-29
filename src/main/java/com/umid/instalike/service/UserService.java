@@ -97,7 +97,7 @@ public class UserService {
     public void deleteUser(Long id)
     {
         User user = userRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found"));
+            .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found"));
 
         userRepository.deleteById(id);
     }
