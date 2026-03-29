@@ -4,6 +4,8 @@ package com.umid.instalike.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +24,9 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @OneToMany(mappedBy = "author")
+    private List<Post> posts = new ArrayList<>();
+
 
     public User(String username, String email) {
         this.username = username;
@@ -31,7 +36,7 @@ public class User {
     public User(){}
 
 
-
+    public List<Post> getPosts() {return posts;}
 
     public Long getId()
     {

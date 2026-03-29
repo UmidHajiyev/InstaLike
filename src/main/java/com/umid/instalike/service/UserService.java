@@ -55,6 +55,15 @@ public class UserService {
         return toResponse(user);
     }
 
+    public List<UserResponse> searchUsersByUsername(String username)
+    {
+        return userRepository.findByUsernameContainingIgnoreCase(username)
+                .stream()
+                .map(this::toResponse)
+                .toList();
+    }
+
+
     private UserResponse toResponse(User user)
     {
         return new UserResponse(
@@ -91,7 +100,9 @@ public class UserService {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found"));
 
         userRepository.deleteById(id);
-
-
     }
+
+
+
+
 }

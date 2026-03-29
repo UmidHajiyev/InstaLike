@@ -3,7 +3,10 @@ package com.umid.instalike.repository;
 import com.umid.instalike.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
+    List<User> findByUsernameContainingIgnoreCase(String username);
 }

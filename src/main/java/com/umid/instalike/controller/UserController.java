@@ -30,6 +30,13 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+
+    @GetMapping("/search")
+    public List<UserResponse> searchUserByUsername(@RequestParam String username)
+    {
+        return userService.searchUsersByUsername(username);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse createUser(@Valid @RequestBody CreateUserRequest request)
